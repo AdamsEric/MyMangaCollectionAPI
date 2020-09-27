@@ -6,12 +6,12 @@ module.exports = {
   async listar(req, res) {
     try {
       const classificacoes = await ClassificacaoIndicativa.findAll({
-        ordem: [['sigla']]
+        order: [['sigla']]
       });
 
       return Response.onSuccess(res, classificacoes);
     } catch (error) {
-      return Response.onError(res, error);
+      return Response.onError(res, error.message);
     }
   },
   async obterPorId(req, res) {
@@ -21,7 +21,7 @@ module.exports = {
       return classificacao ? Response.onSuccess(res, classificacao)
         : Response.notFound(res);
     } catch (error) {
-      return Response.onError(res);
+      return Response.onError(res, error.message);
     }
   },
   async inserir(req, res) {
@@ -37,7 +37,7 @@ module.exports = {
       return created ? Response.onCreate(res, classificacao)
         : Response.onSuccess(res, classificacao);
     } catch (error) {
-      return Response.onError(res, 'Não foi possível inserir');
+      return Response.onError(res, error.message);
     }
   },
   async editar(req, res) {
@@ -50,7 +50,7 @@ module.exports = {
 
       return Response.onUpdate(res, classificacao);
     } catch (error) {
-      return Response.onError(res, 'Não foi possível atualizar');
+      return Response.onError(res, error.message);
     }
   },
   async excluir(req, res) {
@@ -60,7 +60,7 @@ module.exports = {
 
       return qtdeExclusao > 0 ? Response.onDelete(res) : Response.notFound(res);
     } catch (error) {
-      return Response.onError('Não foi possível excluir');
+      return Response.onError(res, error.message);
     }
   }
 };

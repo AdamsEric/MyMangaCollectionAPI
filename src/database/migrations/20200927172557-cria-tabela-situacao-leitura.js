@@ -6,6 +6,10 @@ module.exports = {
         primaryKey: true,
         allowNull: false
       },
+      Ordem: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       Descricao: {
         type: Sequelize.STRING(20),
         allowNull: false

@@ -6,8 +6,10 @@ const Serie = require('./Serie');
 const Periodicidade = require('./Periodicidade');
 const ClassificacaoIndicativa = require('./ClassificacaoIndicativa');
 const Demografia = require('./Demografia');
+const Genero = require('./Genero');
+const Volume = require('./Volume');
 
-class Colecao extends Model {}
+class Colecao extends Model { }
 
 Colecao.init({
   id: {
@@ -46,14 +48,6 @@ Colecao.init({
       deferrable: Deferrable.INITIALLY_IMMEDIATE
     }
   },
-  editoraOriginalId: {
-    type: DataTypes.UUID,
-    references: {
-      model: Editora,
-      key: 'id',
-      deferrable: Deferrable.INITIALLY_IMMEDIATE
-    }
-  },
   stPublicacaoEmAndamento: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
@@ -72,6 +66,14 @@ Colecao.init({
     type: DataTypes.UUID,
     references: {
       model: Serie,
+      key: 'id',
+      deferrable: Deferrable.INITIALLY_IMMEDIATE
+    }
+  },
+  generoId: {
+    type: DataTypes.UUID,
+    references: {
+      model: Genero,
       key: 'id',
       deferrable: Deferrable.INITIALLY_IMMEDIATE
     }
@@ -105,11 +107,40 @@ Colecao.init({
   modelName: 'Colecao'
 });
 
-Colecao.hasOne(Editora, { foreignKey: 'id', sourceKey: 'editoraId' });
-Colecao.hasOne(Editora, { foreignKey: 'id', sourceKey: 'editoraOriginalId' });
-Colecao.hasOne(Serie, { foreignKey: 'id', sourceKey: 'serieId' });
-Colecao.hasOne(Periodicidade, { foreignKey: 'id', sourceKey: 'periodicidadeId' });
-Colecao.hasOne(ClassificacaoIndicativa, { foreignKey: 'id', sourceKey: 'classificacaoIndicativaId' })
-Colecao.hasOne(Demografia, { foreignKey: 'id', sourceKey: 'demografiaId' });
+Colecao.hasOne(Editora, {
+  foreignKey: 'id',
+  sourceKey: 'editoraId',
+  as: 'editora'
+});
+Colecao.hasOne(Serie, {
+  foreignKey: 'id',
+  sourceKey: 'serieId',
+  as: 'serie'
+});
+Colecao.hasOne(Periodicidade, {
+  foreignKey: 'id',
+  sourceKey: 'periodicidadeId',
+  as: 'periodicidade'
+});
+Colecao.hasOne(ClassificacaoIndicativa, {
+  foreignKey: 'id',
+  sourceKey: 'classificacaoIndicativaId',
+  as: 'classificacaoIndicativa'
+});
+Colecao.hasOne(Demografia, {
+  foreignKey: 'id',
+  sourceKey: 'demografiaId',
+  as: 'demografia'
+});
+Colecao.hasOne(Genero, {
+  foreignKey: 'id',
+  sourceKey: 'generoId',
+  as: 'genero'
+});
+Colecao.hasMany(Volume, {
+  foreignKey: 'colecaoId',
+  sourceKey: 'id',
+  as: 'volumes'
+});
 
 module.exports = Colecao;

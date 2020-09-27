@@ -8,8 +8,12 @@ Periodicidade.init({
     type: DataTypes.UUID,
     primaryKey: true
   },
-  nome: {
+  descricao: {
     type: DataTypes.STRING(50),
+    allowNull: false
+  },
+  quantidadeDias: {
+    type: DataTypes.INTEGER,
     allowNull: false
   }
 }, {

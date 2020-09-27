@@ -40,16 +40,6 @@ module.exports = {
         },
         allowNull: false
       },
-      EditoraOriginalId: {
-        type: Sequelize.DataTypes.UUID,
-        references: {
-          model: {
-            tableName: 'Editora'
-          },
-          key: 'Id'
-        },
-        allowNull: false
-      },
       StPublicacaoEmAndamento: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
@@ -69,6 +59,16 @@ module.exports = {
         references: {
           model: {
             tableName: 'Serie'
+          },
+          key: 'Id'
+        },
+        allowNull: true
+      },
+      GeneroId: {
+        type: Sequelize.DataTypes.UUID,
+        references: {
+          model: {
+            tableName: 'Genero'
           },
           key: 'Id'
         },

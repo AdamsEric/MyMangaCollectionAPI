@@ -26,7 +26,7 @@ Volume.init({
   },
   descricao: {
     type: DataTypes.STRING(50),
-    allowNull: false
+    allowNull: true
   },
   precoCapa: {
     type: DataTypes.DECIMAL(6, 2),
@@ -71,7 +71,6 @@ Volume.init({
   modelName: 'Volume'
 });
 
-Volume.hasOne(Colecao, { foreignKey: 'id', sourceKey: 'colecaoId' });
 Volume.hasOne(SituacaoLeitura, { foreignKey: 'id', sourceKey: 'situacaoLeituraId' });
 
 module.exports = Volume;

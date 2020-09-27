@@ -6,12 +6,12 @@ module.exports = {
   async listar(req, res) {
     try {
       const demografias = await Demografia.findAll({
-        ordem: [['descricao']]
+        order: [['descricao']]
       });
 
       return Response.onSuccess(res, demografias);
     } catch (error) {
-      return Response.onError(res, error);
+      return Response.onError(res, error.message);
     }
   },
   async obterPorId(req, res) {
@@ -21,7 +21,7 @@ module.exports = {
       return demografia ? Response.onSuccess(res, demografia)
         : Response.notFound(res);
     } catch (error) {
-      return Response.onError(res);
+      return Response.onError(res, error.message);
     }
   },
   async inserir(req, res) {
@@ -37,7 +37,7 @@ module.exports = {
       return created ? Response.onCreate(res, demografia)
         : Response.onSuccess(res, demografia);
     } catch (error) {
-      return Response.onError(res, 'Não foi possível inserir');
+      return Response.onError(res, error.message);
     }
   },
   async editar(req, res) {
@@ -50,7 +50,7 @@ module.exports = {
 
       return Response.onUpdate(res, demografia);
     } catch (error) {
-      return Response.onError(res, 'Não foi possível atualizar');
+      return Response.onError(res, error.message);
     }
   },
   async excluir(req, res) {
@@ -60,7 +60,7 @@ module.exports = {
 
       return qtdeExclusao > 0 ? Response.onDelete(res) : Response.notFound(res);
     } catch (error) {
-      return Response.onError('Não foi possível excluir');
+      return Response.onError(res, error.message);
     }
   }
 };

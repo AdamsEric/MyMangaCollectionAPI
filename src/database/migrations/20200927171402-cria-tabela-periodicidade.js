@@ -6,8 +6,12 @@ module.exports = {
         primaryKey: true,
         allowNull: false
       },
-      Nome: {
+      Descricao: {
         type: Sequelize.STRING(50),
+        allowNull: false
+      },
+      QuantidadeDias: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       CreatedAt: {

@@ -6,12 +6,12 @@ module.exports = {
   async listar(req, res) {
     try {
       const situacoes = await SituacaoLeitura.findAll({
-        ordem: [['descricao']]
+        order: [['ordem']]
       });
 
       return Response.onSuccess(res, situacoes);
     } catch (error) {
-      return Response.onError(res, error);
+      return Response.onError(res, error.message);
     }
   },
   async obterPorId(req, res) {
@@ -21,34 +21,34 @@ module.exports = {
       return situacao ? Response.onSuccess(res, situacao)
         : Response.notFound(res);
     } catch (error) {
-      return Response.onError(res);
+      return Response.onError(res, error.message);
     }
   },
   async inserir(req, res) {
     try {
-      const { descricao, stConcluido = 0 } = req.body;
+      const { ordem, descricao, stConcluido = false } = req.body;
       const id = Guid.newGuid();
 
       const [situacao, created] = await SituacaoLeitura.findOrCreate({
         where: { descricao },
-        defaults: { id, descricao, stConcluido }
+        defaults: { id, ordem, descricao, stConcluido }
       });
 
       return created ? Response.onCreate(res, situacao)
         : Response.onSuccess(res, situacao);
     } catch (error) {
-      return Response.onError(res, 'Não foi possível inserir');
+      return Response.onError(res, error.message);
     }
   },
   async editar(req, res) {
     try {
-      const { id, descricao, stConcluido } = req.body;
-      await SituacaoLeitura.update({ descricao, stConcluido }, { where: { id } });
+      const { id, ordem, descricao, stConcluido } = req.body;
+      await SituacaoLeitura.update({ ordem, descricao, stConcluido }, { where: { id } });
       const situacao = await SituacaoLeitura.findByPk(id);
 
       return Response.onUpdate(res, situacao);
     } catch (error) {
-      return Response.onError(res, 'Não foi possível atualizar');
+      return Response.onError(res, error.message);
     }
   },
   async excluir(req, res) {
@@ -58,7 +58,7 @@ module.exports = {
 
       return qtdeExclusao > 0 ? Response.onDelete(res) : Response.notFound(res);
     } catch (error) {
-      return Response.onError('Não foi possível excluir');
+      return Response.onError(res, error.message);
     }
   }
 };

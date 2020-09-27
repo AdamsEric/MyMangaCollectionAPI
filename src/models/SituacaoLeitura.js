@@ -8,6 +8,10 @@ SituacaoLeitura.init({
     type: DataTypes.UUID,
     primaryKey: true
   },
+  ordem: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
   descricao: {
     type: DataTypes.STRING(100),
     allowNull: false
