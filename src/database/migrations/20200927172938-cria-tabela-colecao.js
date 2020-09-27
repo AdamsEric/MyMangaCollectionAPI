@@ -14,6 +14,10 @@ module.exports = {
         type: Sequelize.STRING(150),
         allowNull: true
       },
+      TituloAlternativo: {
+        type: Sequelize.STRING(150),
+        allowNull: true
+      },
       Autor: {
         type: Sequelize.STRING(50),
         allowNull: false

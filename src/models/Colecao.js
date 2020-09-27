@@ -22,6 +22,10 @@ Colecao.init({
     type: DataTypes.STRING(150),
     allowNull: true
   },
+  tituloAlternativo: {
+    type: DataTypes.STRING(150),
+    allowNull: true
+  },
   autor: {
     type: DataTypes.STRING(50),
     allowNull: false

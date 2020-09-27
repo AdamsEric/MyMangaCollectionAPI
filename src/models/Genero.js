@@ -8,7 +8,7 @@ Genero.init({
     type: DataTypes.UUID,
     primaryKey: true
   },
-  nome: {
+  descricao: {
     type: DataTypes.STRING(50),
     allowNull: false
   }
