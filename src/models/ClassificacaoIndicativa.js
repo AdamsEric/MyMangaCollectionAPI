@@ -21,7 +21,7 @@ ClassificacaoIndicativa.init({
     allowNull: true
   },
   corHexIndicacao: {
-    type: DataTypes.STRING(6),
+    type: DataTypes.STRING(7),
     allowNull: false
   }
 }, {

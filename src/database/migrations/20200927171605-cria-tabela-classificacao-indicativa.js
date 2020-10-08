@@ -19,7 +19,7 @@ module.exports = {
         allowNull: true
       },
       CorHexIndicacao: {
-        type: Sequelize.STRING(6),
+        type: Sequelize.STRING(7),
         allowNull: false
       },
       CreatedAt: {
