@@ -79,11 +79,11 @@ module.exports = {
   },
   async editar(req, res) {
     try {
-      const { id, titulo, tituloOriginal, tituloAlternativo, autor, roteirista,
-        ilustrador, editoraId, stPublicacaoEmAndamento,
-        stPublicacaoOriginalEmAndamento, quantidadeTotalVolumes, serieId,
-        generoId, periodicidadeId, classificacaoIndicativaId,
-        demografiaId } = req.body;
+      const { id, titulo, tituloOriginal = null, tituloAlternativo = null,
+        autor = null, roteirista = null, ilustrador = null,
+        editoraId, stPublicacaoEmAndamento, stPublicacaoOriginalEmAndamento,
+        quantidadeTotalVolumes, serieId, generoId, periodicidadeId,
+        classificacaoIndicativaId, demografiaId } = req.body;
 
       await Colecao.update(
         {
