@@ -71,6 +71,6 @@ Volume.init({
   modelName: 'Volume'
 });
 
-Volume.hasOne(SituacaoLeitura, { foreignKey: 'id', sourceKey: 'situacaoLeituraId' });
+Volume.hasOne(SituacaoLeitura, { foreignKey: 'id', sourceKey: 'situacaoLeituraId', as: 'situacaoLeitura' });
 
 module.exports = Volume;

@@ -5,8 +5,14 @@ const Volume = require('../models/Volume');
 module.exports = {
   async listar(req, res) {
     try {
+      const filters = req.query;
+
       const volumes = await Volume.findAll({
-        ordem: [['numero']]
+        where: filters,
+        order: [['numero']],
+        include: [
+          'situacaoLeitura'
+        ]
       });
 
       return Response.onSuccess(res, volumes);
