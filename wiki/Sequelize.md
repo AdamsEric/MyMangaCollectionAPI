@@ -1,15 +1,15 @@
-# Migrations
+> ### Migrations
 
-## Criação do banco de dados
+#### Criação do banco de dados
 `npx sequelize db:create`
 
-## Criação de migration do banco de dados
+#### Criação de migration do banco de dados
 `npx sequelize migration:create --name=<nome_da_migration>`
 
-## Execução das migrations
+#### Execução das migrations
 `npx sequelize db:migrate`
 
-## Reversão de migrations
+> ### Reversão de migrations
 
 #### Reverte a última migration
 `npx sequelize-cli db:migrate:undo`
